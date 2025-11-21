@@ -44,13 +44,12 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		double step = epsilon * 0.98;
 		iterationCounter = 0;
 		double payment = loan/n;
 		double t = endBalance(loan, rate, n, payment);
 
 		while (t>epsilon) {
-			payment = payment + step;
+			payment = payment + epsilon;
 			t = endBalance(loan, rate, n, payment); 
 			iterationCounter++;  
 
