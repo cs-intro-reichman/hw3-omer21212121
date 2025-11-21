@@ -28,22 +28,70 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+		String a = preProcess(str1);
+		String b = preProcess(str2);
+		
+		if (a.length() != b.length()){
+			return false;
+		}
+		
+		for (int i = 0; i < a.length(); i++){
+			char j = a.charAt(i);
+			int countA = 0;
+			int countB = 0;
+			
+			for (int k = 0; k < a.length(); k++){
+				if (a.charAt(k) == j){
+					countA++;
+				}
+			}
+			
+			for (int l = 0; l < b.length(); l++){
+				if (b.charAt(l) == j){
+					countB++;
+				}
+			}
+			
+			if (countA != countB){
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String result = "";
+		int i;
+		for (i=0; i<str.length();i++){
+			char j = str.charAt(i); 
+			if ((j<='z')&&(j>='a') || ((j<='Z')&&(j>='A'))) {
+				result = result + Character.toLowerCase(j);
+			}
+			}
+		
+
+		return result;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String result = "";
+		String remaining = str;
+		
+		while (remaining.length() > 0){
+			int randomIndex = (int)(Math.random() * remaining.length());
+			char randomChar = remaining.charAt(randomIndex);
+			result = result + randomChar;
+			remaining = remaining.substring(0, randomIndex) + remaining.substring(randomIndex + 1);
+		}
+		
+		return result;
 	}
 }
+
+
